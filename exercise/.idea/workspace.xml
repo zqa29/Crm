@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="54dd3354-0fed-4d99-898d-c9f7052ea9f1" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="ADD_SUFFIX_TO_CHERRY_PICKS_OF_PUBLISHED_COMMITS" value="false" />
+    <option name="PREVIEW_PUSH_PROTECTED_ONLY" value="true" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../project01" />
+  </component>
+  <component name="GithubDefaultAccount">
+    <option name="defaultAccountId" value="fe517da9-8e45-4a92-98fc-3a186c91a464" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="$PROJECT_DIR$/../../Resources/MavenResources" />
+        <option name="mavenHome" value="$APPLICATION_HOME_DIR$/plugins/maven/lib/maven3" />
+        <option name="userSettingsFile" value="/usr/local/maven/maven-3.6/conf/settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1fUL7rsUuyCglx5IukwDx5FcKh4" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../project01" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="54dd3354-0fed-4d99-898d-c9f7052ea9f1" name="Default Changelist" comment="" />
+      <created>1596267559861</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1596267559861</updated>
+      <workItem from="1596267563099" duration="1817000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="836" y="397" width="744" height="520" key="#Notifications" timestamp="1596267734609">
+      <screen x="0" y="28" width="1920" height="1014" />
+    </state>
+    <state x="836" y="397" width="744" height="520" key="#Notifications/0.28.1920.1014@0.28.1920.1014" timestamp="1596267734609" />
+    <state x="443" y="112" width="1024" height="852" key="#Project_Structure" timestamp="1596267571291">
+      <screen x="0" y="28" width="1920" height="1014" />
+    </state>
+    <state x="443" y="112" width="1024" height="852" key="#Project_Structure/0.28.1920.1014@0.28.1920.1014" timestamp="1596267571291" />
+    <state x="682" y="373" width="434" height="491" key="FileChooserDialogImpl" timestamp="1596271488650">
+      <screen x="0" y="28" width="1920" height="1014" />
+    </state>
+    <state x="682" y="373" width="434" height="491" key="FileChooserDialogImpl/0.28.1920.1014@0.28.1920.1014" timestamp="1596271488650" />
+    <state x="456" y="170" width="1007" height="737" key="SettingsEditor" timestamp="1596271274021">
+      <screen x="0" y="28" width="1920" height="1014" />
+    </state>
+    <state x="456" y="170" width="1007" height="737" key="SettingsEditor/0.28.1920.1014@0.28.1920.1014" timestamp="1596271274021" />
+    <state x="741" y="448" width="438" height="181" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1596270483250">
+      <screen x="0" y="28" width="1920" height="1014" />
+    </state>
+    <state x="741" y="448" width="438" height="181" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.28.1920.1014@0.28.1920.1014" timestamp="1596270483250" />
+  </component>
+</project>

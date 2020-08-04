@@ -1,0 +1,9 @@
+$.ajax({
+			url:"",
+			data: {},
+			type:"",
+			dataType:"json",
+			success(){
+
+			}
+		})

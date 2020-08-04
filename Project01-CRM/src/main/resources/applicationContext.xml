@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!--数据库配置文件-->
+    <context:property-placeholder location="classpath:properties/jdbc.properties"/>
+
+    <!--  声明组件扫描器  -->
+    <context:component-scan base-package="per.zqa.crm.settings.service"/>
+    <context:component-scan base-package="per.zqa.crm.workbench.service"/>
+
+    <!--  阿里数据源dataSource  -->
+    <bean id="aliDataSource" class="com.alibaba.druid.pool.DruidDataSource"
+          init-method="init" destroy-method="close">
+        <property name="url" value="${jdbc.uri}"/>
+        <property name="name" value="${jdbc.name}"/>
+        <property name="password" value="${jdbc.pwd}"/>
+    </bean>
+
+    <!--  dbcp数据源dataSource  -->
+    <bean id="dbcpDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="${jdbc.driverClassName}"/>
+        <property name="url" value="${jdbc.uri}"/>
+        <property name="username" value="${jdbc.name}"/>
+        <property name="password" value="${jdbc.pwd}"/>
+    </bean>
+
+    <!--  声明sqlSessionFactoryBean  -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dbcpDataSource"/>
+        <property name="configLocation" value="classpath:mybatis/MyBatis.xml"/>
+    </bean>
+
+    <!--  声明MyBatis扫描器，创建dao对象  -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+        <property name="basePackage" value="per.zqa.crm.settings.dao,per.zqa.crm.workbench.dao"/>
+    </bean>
+
+    <!--  事务配置  -->
+    <!--  声明事务管理器对象  -->
+    <bean id="dataSourceTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <!--    指定数据源    -->
+        <property name="dataSource" ref="dbcpDataSource"/>
+    </bean>
+
+    <!--  配置通知：声明方法的事务类型  -->
+    <tx:advice id="myAdvice" transaction-manager="dataSourceTransactionManager">
+        <!--    配置指定方法的事务属性    -->
+        <tx:attributes>
+            <tx:method name="save*" isolation="DEFAULT" propagation="REQUIRED"
+                       rollback-for="per.zqa.crm.exception.AjaxRequestException,per.zqa.crm.exception.TraditionRequestException"/>
+            <tx:method name="update*" isolation="DEFAULT" propagation="REQUIRED"
+                       rollback-for="per.zqa.crm.exception.AjaxRequestException,per.zqa.crm.exception.TraditionRequestException"/>
+            <tx:method name="delete*" isolation="DEFAULT" propagation="REQUIRED"
+                       rollback-for="per.zqa.crm.exception.AjaxRequestException,per.zqa.crm.exception.TraditionRequestException"/>
+            <!--    除了上面方法以外，其他方法    -->
+            <tx:method name="*" propagation="SUPPORTS" read-only="true"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <!--  配置aop  -->
+    <aop:config>
+        <!--    指定切入点    -->
+        <aop:pointcut id="servicePt" expression="execution(* per.zqa.crm..service..impl.*.*(..))"/>
+        <!--    配置增强器对象    -->
+        <aop:advisor advice-ref="myAdvice" pointcut-ref="servicePt"/>
+    </aop:config>
+
+
+
+
+</beans>
