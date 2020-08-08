@@ -1,9 +1,13 @@
 package per.zqa.crm.vo;
 
+import per.zqa.crm.settings.domain.User;
+import per.zqa.crm.workbench.domain.Activity;
+
 public class ActivityVo {
 
     private String pageNo;
-    private String pageSize;
+    private Integer skipCount;
+    private Integer pageSize;
     private String name;
     private String owner;
     private String startDate;
@@ -17,11 +21,11 @@ public class ActivityVo {
         this.pageNo = pageNo;
     }
 
-    public String getPageSize() {
+    public Integer getPageSize() {
         return pageSize;
     }
 
-    public void setPageSize(String pageSize) {
+    public void setPageSize(Integer pageSize) {
         this.pageSize = pageSize;
     }
 
@@ -56,4 +60,13 @@ public class ActivityVo {
     public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
+
+    public Integer getSkipCount() {
+        return skipCount;
+    }
+
+    public void setSkipCount(Integer skipCount) {
+        this.skipCount = skipCount;
+    }
+
 }

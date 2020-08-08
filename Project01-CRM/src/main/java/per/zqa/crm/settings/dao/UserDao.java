@@ -18,4 +18,6 @@ public interface UserDao {
     User selectOne(UserLogin ul);
 
     List<User> getUserList();
+
+    User getUserById(String id);
 }

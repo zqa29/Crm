@@ -16,3 +16,33 @@ CRM客户管理系统
         导入时间控制器，给时间class属性加上time的值
         dataDismiss表示关闭模态窗口
         市场活动列表进行分页展现
+        加入分页插件
+        加入修改模态窗口的隐藏id属性
+        修改后的数据应该在第一条，删除后的数据应该回到第一页
+        使用传统请求跳转到详细信息页
+
+    四、activity/detail.jsp
+        采用el表达式从session域中获取数据
+        采用append方法或before方法追加兄弟标签
+        加入编辑修改图标并改成红色(图标都来自于bootstrap)
+        javascript:void(0);只能触发事件使用超链接
+        动态形参传入函数必须用''廓起来
+
+    五、缓存cache
+        内存中的数据
+        服务器缓存机制：将数据保存到服务器的内存中
+        如果服务器处于开启状态，就一直能够从缓存中取得数据application(全局域，上下文作用域)
+        application.setAttribute(),application.getAttribute()
+
+    六、数据字典
+        应用程序中，做表单元素选择内容用的相关数据
+        *下拉框、单选框、复选框
+        两张表tbl_dic_type、tbl_dic_value
+        tbl_dic_type code作为主键存放字典类型编码（也是唯一）
+        tbl_dic_value value程序员用、text文本客户使用，orderNo排序号，下拉列表，typeCode外键
+
+    七、服务器缓存+数据字典
+        不再需要每次都访问数据库，从application中取数据字典
+        采用监听器技术，实现ServletContextListener接口
+        获取application向域中保存value对象
+        按照typeCode分类

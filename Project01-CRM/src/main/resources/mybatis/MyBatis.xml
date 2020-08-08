@@ -12,6 +12,7 @@
     <typeAliases>
         <package name="per.zqa.crm.settings.domain"/>
         <package name="per.zqa.crm.workbench.domain"/>
+        <package name="per.zqa.crm.vo"/>
     </typeAliases>
     <!--  sql映射文件的位置  -->
     <mappers>

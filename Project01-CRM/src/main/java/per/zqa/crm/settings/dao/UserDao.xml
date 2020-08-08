@@ -14,4 +14,8 @@
     <select id="getUserList" resultType="User">
         select * from  tbl_user
     </select>
+
+    <select id="getUserById" resultType="User">
+        select * from tbl_user where id = #{id}
+    </select>
 </mapper>

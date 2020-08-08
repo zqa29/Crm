@@ -23,15 +23,6 @@
         <url-pattern>*.do</url-pattern>
     </servlet-mapping>
 
-    <!--  Spring监听器  -->
-    <context-param>
-        <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:applicationContext.xml</param-value>
-    </context-param>
-    <listener>
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener>
-
     <!--  字符集过滤器  -->
     <filter>
         <filter-name>characterEncodingFilter</filter-name>
@@ -57,5 +48,17 @@
         <url-pattern>*.do</url-pattern>
     </filter-mapping>
 
+    <!--  Spring监听器  -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:applicationContext.xml</param-value>
+    </context-param>
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <listener>
+        <listener-class>per.zqa.crm.web.listener.SysInitListener</listener-class>
+    </listener>
 
 </web-app>

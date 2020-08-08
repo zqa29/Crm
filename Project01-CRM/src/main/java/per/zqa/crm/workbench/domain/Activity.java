@@ -2,7 +2,7 @@ package per.zqa.crm.workbench.domain;
 
 public class Activity {
 
-    private String id; //
+    private String id;
     private String owner;
     private String name;
     private String startDate;

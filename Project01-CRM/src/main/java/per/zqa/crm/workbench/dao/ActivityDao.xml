@@ -26,4 +26,54 @@
             #{createBy}
         )
     </insert>
+
+    <select id="getTotalByCondition" parameterType="ActivityVo" resultType="integer">
+        select count(*) from tbl_activity
+    </select>
+
+    <select id="getActivityByCondition" parameterType="PageVo" resultType="Activity">
+        select a.id,a.name,t.name as owner,a.startDate,a.endDate
+        from tbl_activity a
+        join tbl_user t
+        on t.id = a.owner
+        <where>
+            <!-- 此时的name是activity中的属性名 -->
+            <if test="name != null and name != ''">
+                a.name like '%' #{name} '%'
+            </if>
+            <if test="owner != null and owner != ''">
+                and t.name like '%' #{owner} '%'
+            </if>
+            <if test="startDate != null and startDate != ''">
+                and a.startDate &gt; #{startDate}
+            </if>
+            <if test="endDate != null and endDate != ''">
+                and a.endDate &lt; #{endDate}
+            </if>
+        </where>
+        order by a.createTime desc
+        limit #{skipCount},#{pageSize}
+    </select>
+
+    <delete id="deleteActivityById" parameterType="string" >
+        delete from tbl_activity where id = #{id}
+    </delete>
+
+    <select id="getActivityById" resultType="Activity">
+        select * from tbl_activity where id=#{id}
+    </select>
+
+    <update id="updateActivity" parameterType="Activity" >
+        update tbl_activity
+        set name=#{name},startDate=#{startDate},endDate=#{endDate},cost=#{cost},description=#{description},editTime=#{editTime},editBy=#{editBy}
+        where id=#{id}
+    </update>
+
+    <select id="getActivityDetailById" resultType="Activity">
+        select a.id,t.name as owner,a.name,a.startDate,a.endDate,a.cost,a.description,a.createTime,a.createBy,a.editTime,a.editBy
+        from tbl_activity a
+        join tbl_user t
+        on a.owner=t.id
+        where a.id = #{id}
+    </select>
 </mapper>
