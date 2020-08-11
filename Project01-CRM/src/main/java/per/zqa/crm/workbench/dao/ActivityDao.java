@@ -1,5 +1,6 @@
 package per.zqa.crm.workbench.dao;
 
+import org.apache.ibatis.annotations.Param;
 import per.zqa.crm.vo.ActivityVo;
 import per.zqa.crm.vo.PageVo;
 import per.zqa.crm.workbench.domain.Activity;
@@ -25,4 +26,10 @@ public interface ActivityDao {
     int updateActivity(Activity activity);
 
     Activity getActivityDetailById(String id);
+
+    List<Activity> getActivityListByClueId(String clueId);
+
+    List<Activity> getActivityListNotByClueId(@Param("condition") String condition, @Param("clueId") String clueId);
+
+    List<Activity> getActivityListByName(String condition);
 }

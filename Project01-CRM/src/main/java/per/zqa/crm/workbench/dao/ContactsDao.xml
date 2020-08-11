@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="per.zqa.crm.workbench.dao.ContactsDao">
+	<insert id="saveContactsByClueAndId">
+        insert into tbl_contacts(
+            id,
+            owner,
+            source,
+            customerId,
+            fullname,
+            appellation,
+            email,
+            mphone,
+            job,
+            createBy,
+            createTime,
+            description,
+            contactSummary,
+            nextContactTime,
+            address
+        ) values (
+            #{id},
+            #{c.owner},
+            #{c.source},
+            #{customerId},
+            #{c.fullname},
+            #{c.appellation},
+            #{c.email},
+            #{c.mphone},
+            #{c.job},
+            #{c.createBy},
+            #{c.createTime},
+            #{c.description},
+            #{c.contactSummary},
+            #{c.nextContactTime},
+            #{c.address}
+        )
+    </insert>
+  	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

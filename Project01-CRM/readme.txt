@@ -46,3 +46,20 @@ CRM客户管理系统
         采用监听器技术，实现ServletContextListener接口
         获取application向域中保存value对象
         按照typeCode分类
+
+    八、clue/index.jsp
+        加入jstl，数据可以直接从缓存中获取
+
+    九、clue/detail.jsp
+        不通过后台直接传递数据
+        id可以用get，字符数不超过浏览器限制也可以
+        String fullname = request.getParameter("fullname") --> ${param.fullname}
+        上面的param不能省略，否则就是从四大域中取值
+        el没有request，只能通过pageContext获取
+        还可以获取其他的内置对象
+
+    十、clue/convert.ksp
+        添加关闭和提交按钮
+        提交按钮后需要将name赋值，还要再加一个id赋值到隐藏域
+        提交线索到后台进行转换，发出传统请求
+        添加标记判断是否需要提交表单

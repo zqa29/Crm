@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="per.zqa.crm.workbench.dao.CustomerDao">
+	<insert id="saveCustomerByConvert">
+        insert into tbl_customer(
+            id,
+            name,
+            createBy,
+            createTime
+        ) values (
+            #{id},
+            (select company from tbl_clue t where id=#{clueId}),
+            #{createBy},
+            #{createTime}
+        )
+    </insert>
+
+    <select id="getCustomerByName" resultType="Customer">
+        select id,owner,name,website,phone,createBy,createTime,editBy,editTime,contactSummary,nextContactTime,description,address
+        from tbl_customer
+        where name=#{company}
+    </select>
+
+    <insert id="saveCustomerByClueAndCustomer" >
+        insert into tbl_customer(
+            id,
+            owner,
+            name,
+            website,
+            phone,
+            createBy,
+            createTime,
+            contactSummary,
+            nextContactTime,
+            description,
+            address
+        ) values (
+            #{cus.id},
+            #{clu.owner},
+            #{cus.name},
+            #{clu.website},
+            #{clu.phone},
+            #{cus.createBy},
+            #{cus.createTime},
+            #{clu.contactSummary},
+            #{clu.nextContactTime},
+            #{clu.description},
+            #{clu.address}
+        )
+    </insert>
+  	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="per.zqa.crm.workbench.dao.ClueDao">
+	<insert id="saveClue" parameterType="Clue">
+        insert into tbl_clue (
+            id,
+            fullname,
+            appellation,
+            owner,
+            company,
+            job,
+            email,
+            phone,
+            website,
+            mphone,
+            state,
+            source,
+            createBy,
+            createTime,
+            description,
+            contactSummary,
+            nextContactTime,
+            address
+        ) values (
+            #{id},
+            #{fullname},
+            #{appellation},
+            (select name from tbl_user where id=#{owner}),
+            #{company},
+            #{job},
+            #{email},
+            #{phone},
+            #{website},
+            #{mphone},
+            #{state},
+            #{source},
+            #{createBy},
+            #{createTime},
+            #{description},
+            #{contactSummary},
+            #{nextContactTime},
+            #{address}
+        )
+    </insert>
+
+    <select id="getDetail" resultType="Clue">
+        select id,fullname,appellation,owner,company,job,email,phone,website,mphone,state,source,createBy,createTime,editBy,editTime,description,contactSummary,nextContactTime,address
+        from tbl_clue where id=#{id}
+    </select>
+
+    <delete id="deleteRelationById" >
+        delete from
+        tbl_clue_activity_relation
+        where id=#{id}
+    </delete>
+
+    <insert id="boundRelation">
+        insert into tbl_clue_activity_relation ql(
+            id,
+            clueId,
+            activityId
+        ) VALUES(
+            #{id},
+            #{cId},
+            #{aId}
+        )
+    </insert>
+
+    <select id="getClueById" resultType="Clue">
+        select id,fullname,appellation,owner,company,job,email,phone,website,mphone,state,source,createBy,createTime,editBy,editTime,description,contactSummary,nextContactTime,address
+        from tbl_clue where id=#{clueID}
+    </select>
+
+    <delete id="deleteClue">
+        delete from tbl_clue where id=#{id}
+    </delete>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

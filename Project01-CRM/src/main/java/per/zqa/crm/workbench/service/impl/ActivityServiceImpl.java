@@ -144,4 +144,24 @@ public class ActivityServiceImpl implements ActivityService {
         }
         return true;
     }
+
+    @Override
+    public List<Activity> getActivityListByClueId(String clueId) {
+        List<Activity> aList =  activityDao.getActivityListByClueId(clueId);
+        return aList;
+    }
+
+    @Override
+    public List<Activity> getActivityListNotByClueId(String condition, String clueId) {
+        // 传入参数调用dao层
+        List<Activity> aList = activityDao.getActivityListNotByClueId(condition, clueId);
+        return aList;
+
+    }
+
+    @Override
+    public List<Activity> getActivityListByName(String condition) {
+        List<Activity> aList = activityDao.getActivityListByName(condition);
+        return aList;
+    }
 }

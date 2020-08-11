@@ -76,4 +76,47 @@
         on a.owner=t.id
         where a.id = #{id}
     </select>
+
+    <select id="getActivityListByClueId" resultType="Activity">
+        select
+            tcar.id as id,
+            u.name as owner,
+            a.name,
+            a.startDate,
+            a.endDate
+        from tbl_activity a
+        join tbl_user u
+        on u.id=a.owner
+        join tbl_clue_activity_relation tcar
+        on tcar.activityId=a.id
+        where tcar.clueId=#{clueId}
+    </select>
+
+    <select id="getActivityListNotByClueId" resultType="Activity">
+        select
+            a.id,
+            u.name as owner,
+            a.name,
+            a.startDate,
+            a.endDate
+        from tbl_activity a
+        join tbl_user u
+        on u.id=a.owner
+        where a.name like '%' #{condition} '%' and a.id not in (
+            select activityId from tbl_clue_activity_relation where clueId=#{clueId}
+        )
+    </select>
+
+    <select id="getActivityListByName" resultType="Activity">
+        select
+             a.id,
+            u.name as owner,
+            a.name,
+            a.startDate,
+            a.endDate
+        from tbl_activity a
+        join tbl_user u
+        on a.owner=u.id
+        where a.name like '%' #{condition} '%'
+    </select>
 </mapper>

@@ -19,7 +19,7 @@
 
 		// 如果用户名为空的话跳转到login页面,注意el表达式必须要用""套起来
 		if ("${user.name}" == "") {
-			window.location.href = "index.jsp"
+			window.location.href = "index.html"
 		}
 		
 		//导航中所有文本颜色为黑色
