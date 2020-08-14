@@ -32,4 +32,7 @@ public interface ActivityDao {
     List<Activity> getActivityListNotByClueId(@Param("condition") String condition, @Param("clueId") String clueId);
 
     List<Activity> getActivityListByName(String condition);
+
+    List<Activity> getActivityList();
+
 }

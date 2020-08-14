@@ -3,6 +3,7 @@ package per.zqa.crm.workbench.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import per.zqa.crm.exception.AjaxRequestException;
+import per.zqa.crm.exception.TraditionRequestException;
 import per.zqa.crm.vo.ActivityVo;
 import per.zqa.crm.vo.PageVo;
 import per.zqa.crm.workbench.dao.ActivityDao;
@@ -11,6 +12,7 @@ import per.zqa.crm.workbench.domain.Activity;
 import per.zqa.crm.workbench.domain.ActivityRemark;
 import per.zqa.crm.workbench.service.ActivityService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -163,5 +165,38 @@ public class ActivityServiceImpl implements ActivityService {
     public List<Activity> getActivityListByName(String condition) {
         List<Activity> aList = activityDao.getActivityListByName(condition);
         return aList;
+    }
+
+    @Override
+    public List<Activity> getActivityList() throws  TraditionRequestException {
+        List<Activity> activityList = activityDao.getActivityList();
+        if (activityList == null) {
+            throw new TraditionRequestException("获取市场活动列表失败");
+        }
+        return activityList;
+    }
+
+    @Override
+    public List<Activity> getActivityListById(String[] ids) {
+        List<Activity> aList = new ArrayList<>();
+        // 遍历数组
+        for (String id: ids) {
+            // 调用dao层
+            Activity activity = activityDao.getActivityById(id);
+            // 放入list中
+            aList.add(activity);
+        }
+        return aList;
+    }
+
+    @Override
+    public void saveActivityByList(List<Activity> aList) throws AjaxRequestException {
+        // 遍历list，传入Activity对象
+        for (Activity activity: aList) {
+            int i = activityDao.saveActivity(activity);
+            if (i != 1) {
+                throw new AjaxRequestException("保存市场活动失败");
+            }
+        }
     }
 }

@@ -1,6 +1,7 @@
 package per.zqa.crm.workbench.service;
 
 import per.zqa.crm.exception.AjaxRequestException;
+import per.zqa.crm.exception.TraditionRequestException;
 import per.zqa.crm.vo.ActivityVo;
 import per.zqa.crm.vo.PageVo;
 import per.zqa.crm.workbench.domain.Activity;
@@ -35,4 +36,10 @@ public interface ActivityService {
     List<Activity> getActivityListNotByClueId(String condition, String clueId);
 
     List<Activity> getActivityListByName(String condition);
+
+    List<Activity> getActivityList() throws TraditionRequestException;
+
+    List<Activity> getActivityListById(String[] ids);
+
+    void saveActivityByList(List<Activity> aList) throws AjaxRequestException;
 }

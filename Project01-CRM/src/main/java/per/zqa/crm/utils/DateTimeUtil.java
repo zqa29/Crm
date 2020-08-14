@@ -17,4 +17,14 @@ public class DateTimeUtil {
         return format;
     }
 
+    public static String getSysTimeForUpload(){
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+
+        Date date = new Date();
+        String dateStr = sdf.format(date);
+
+        return dateStr;
+
+    }
 }

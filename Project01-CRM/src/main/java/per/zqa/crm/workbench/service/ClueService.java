@@ -2,7 +2,6 @@ package per.zqa.crm.workbench.service;
 
 import per.zqa.crm.workbench.domain.Clue;
 import per.zqa.crm.workbench.domain.Tran;
-import per.zqa.crm.workbench.vo.ConvertVo;
 
 public interface ClueService {
     boolean saveClue(Clue clue);

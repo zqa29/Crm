@@ -119,4 +119,9 @@
         on a.owner=u.id
         where a.name like '%' #{condition} '%'
     </select>
+
+    <select id="getActivityList" resultType="Activity">
+        select * from tbl_activity
+    </select>
+
 </mapper>

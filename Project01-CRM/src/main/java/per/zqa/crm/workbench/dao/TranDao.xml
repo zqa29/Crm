@@ -41,7 +41,69 @@
             #{nextContactTime}
         )
     </insert>
-  	
+
+    <insert id="saveTran">
+        insert into tbl_tran(
+            id,
+            owner,
+            money,
+            name,
+            expectedDate,
+            customerId,
+            stage,
+            type,
+            source,
+            activityId,
+            contactsId,
+            createBy,
+            createTime,
+            description,
+            contactSummary,
+            nextContactTime
+        ) values (
+            #{id},
+            #{owner},
+            #{money},
+            #{name},
+            #{expectedDate},
+            #{customerId},
+            #{stage},
+            #{type},
+            #{source},
+            #{activityId},
+            #{contactsId},
+            #{createBy},
+            #{createTime},
+            #{description},
+            #{contactSummary},
+            #{nextContactTime}
+        )
+    </insert>
+
+    <select id="tranDetail" resultType="Tran">
+        select id,owner,money,name,expectedDate,customerId,stage,type,source,activityId,contactsId,createBy,createTime,editBy,editTime,description,contactSummary,nextContactTime
+        from tbl_tran
+        where id=#{id}
+    </select>
+
+    <update id="updateStage" parameterType="string" >
+        update tbl_tran set
+            stage=#{stage},
+            money=#{money},
+            expectedDate=#{expectedDate},
+            editBy=#{editBy},
+            editTime=#{editTime}
+        where id=#{id}
+    </update>
+
+    <select id="getTotal" resultType="int">
+        select count(*) from tbl_tran
+    </select>
+
+    <select id="getCharts" resultType="map">
+        select count(*) as value, stage as name
+        from tbl_tran group by stage
+    </select>
 </mapper>
 
 

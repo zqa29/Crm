@@ -8,7 +8,7 @@
 <html>
 <head>
 	<base href="<%=basePath%>"/>
-	<link href="jquery/bootstrap_3.3.0/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
+    <link href="jquery/bootstrap_3.3.0/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
 	<link href="jquery/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css" type="text/css" rel="stylesheet" />
 
 <script type="text/javascript" src="jquery/jquery-1.11.1-min.js"></script>
@@ -255,6 +255,89 @@
 			$("input[name=selectBox]").prop("checked", this.checked);
 		});
 
+		// 给导出全部市场活动按钮绑定单击事件
+		$("#exportActivityAllBtn").click(function () {
+			// 提示
+			if (confirm("确定要导出所有数据吗")) {
+				// 必须是传统请求
+				window.location.href="workbench/activity/exportActivityAll.do"
+			}
+		});
+
+
+		// 给导出选择数市场活动按钮绑定事件
+		$("#exportActivityXzBtn").click(function () {
+			// 取出选择的选项框
+			let $sb = $("input[name=selectBox]:checked");
+
+			// 判断选择的条数
+			let param = "";
+			if ($sb.length === 0) {
+				alert("请选择要导出的数据")
+			} else {
+				// 遍历取出所有的value（即为市场活动的id）
+				for(let i=0;i<$sb.length;i++) {
+					param += "id=" + $($sb[i]).val();
+					if (i < $sb.length - 1) {
+						param += "&";
+					}
+				}
+				// 提示
+				if (confirm("确定要导出所有数据吗")) {
+					// 必须是传统请求
+					window.location.href="workbench/activity/exportActivitySelected.do?" + param;
+				}
+			}
+
+		})
+
+        // 为导入按钮绑定事件
+        $("#importActivityBtn").click(function () {
+            //收集参数
+            let fileName = $("#activityFile").val();
+            // 取得后缀
+            let suffix = fileName.substr(fileName.lastIndexOf(".") + 1);
+            // 判断后缀是否以xls或xlsx文件结尾
+            if(!(suffix==='xls' || suffix==='xlsx')){
+                alert("仅支持.xls 或.xlsx 格式的文件!");
+                return false;
+            }
+            //取得文件对象
+            let activityFile = $("#activityFile")[0].files[0];
+            if(activityFile.size > 1024*1024*80){
+                alert("文件大小不超过 80MB!");
+                return;
+            }
+            //发送请求
+            //FormData 是 ajax 定义的接口,可以模拟键值对向服务器提交数据
+            //FormData 类型的作用是可以提交文本数据,还可以提交二进制数据.
+            let formData = new FormData();
+            formData.append("myFile",$("#activityFile")[0].files[0]);
+            $.ajax({
+                url:'workbench/activity/importActivity.do',
+                data:formData,
+                type:'post',
+                // 主要是配合 contentType 使用的,默认情况下,ajax 把所有数据进行 application/x-www-form-urlencoded 编码之前,会把所有数据统一转化为字符串;
+                // 把 processData 设置为 false,可以阻止这种行为.
+                processData:false,
+                //默认情况下,ajax 向服务器发送数据之前,把所有数据统一按照 application/x-www-form-urlencoded 编码格式进行编码;把contentType 设置为 false,能够阻止这种行为.
+                contentType:false,
+                success:function(data){
+                    if(data.success){
+                        //提示成功导入记录的条数
+                        alert("导入数据成功");
+                        $("#activityFile").val("");
+                        //关闭模态窗口
+                        $("#importActivityModal").modal("hide");
+                        //刷新列表
+                        pageList(1,2);
+                    }else{
+                        alert("导入数据失败");
+                    }
+                }
+            });
+        })
+
 		/*
 			为复选框绑定单击按钮事件
 				动态生成的元素，要以on方法的形式来触发事件
@@ -262,7 +345,7 @@
 		 */
 		$("#activityBody").on("click", $("input[name=selectBox]"), function () { // td、tr都无效
 			// 选择id名为selectAll的标签调用prop方法，判断条件为复选框的选择数==复选框的总数
-			$("#selectAll").prop("checked", $("input[name=selectBox]:checked").length == $("input[name=selectBox]").length);
+			$("#selectAll").prop("checked", $("input[name=selectBox]:checked").length === $("input[name=selectBox]").length);
 		});
 
     });
@@ -323,7 +406,7 @@
 				$("#activityBody").html(html);
 
 				// 计算总页数
-				let totalPages = (data.total % pageSize) == 0? data.total/pageSize: parseInt(data.total/pageSize) + 1;
+				let totalPages = (data.total % pageSize) === 0? data.total/pageSize: parseInt(data.total/pageSize) + 1;
 
 				// 数据处理完毕后，结合分页查询，对前端展现分页信息
 				$("#activityPage").bs_pagination({
